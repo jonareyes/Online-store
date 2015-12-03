@@ -53,6 +53,20 @@ class View
 		end
 	end
 
+	def select
+		puts "Welcome to the online STORE: Crea tu playera, (www.your-own-style.com)"
+		puts "----------------------------------------------------------------------"
+		puts "Select option number:\n 1.Login.\n 2.Register.\n 3.Exit.\n"
+		puts ""
+		text = gets.chomp 
+		case text 
+		when "1" then login
+		when "2" then register
+		when "3" then exit	
+		end
+	end
+
+
 	def logout_method
 
 		

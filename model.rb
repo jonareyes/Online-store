@@ -1,55 +1,62 @@
-class Users
-	attr_accessor :name, :email, :password
-	def initialize
+class User
+
+	attr_accessor :name, :mail, :password
+	$usuarios = []
+
+	def initialize(name, mail, password)
 		@name = name
-		@email = email
-		@password = password		
+		@mail = mail
+		@password = password
 	end	
+
+	def add_user(user)
+		$usuarios << user
+	end
+
 end
 
-class Cliente < Users
+class Cliente < User
+
 
 end
 
-class Vendedor < Users
+class Vendedor < User
 	
 end
 
-class Administrador < Users
+class Administrador < User
 	
 end
 
 class Store
-	@products = []
+	attr_accessor :products
 
-	def initialize(products)
-		@products = products
+	def initialize
+		@products = []
 	end
 
-	def add_product(name, price, model)
-		@products << Product.new(name, price, model)
+	def add_product(name, price)
+		@products << Product.new(name, price)
 	end
 
 	def search_product_by(field, search)
 		@products.find_index {|product| product.field == search.field}
 	end
 
-	def delete_product_with_id(id)
-		@products.delete_at(id)
-	end
+	# def delete_product_with_id(id)
+	# 	@products.delete_at(id)
+	# end
 
-	def delete_product_with_name(search)
-		delete_product_with_id(search_product)
-	end
+	# def delete_product_with_name(search)
+	# 	delete_product_with_id(search_product)
+	# end
 end
 
 class Product
-	attr_reader :name, :price, :model 
-	def initialize(name, price, model)
+	attr_reader :name, :price 
+	def initialize(name, price)
 		@name = name
 		@price = price
-		@model = model
 	end
 end
 
-Product.new("Player Gris", 80.00, "")

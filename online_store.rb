@@ -6,7 +6,6 @@ class StoreController
 		@view = View.new
 		@store = Store.new
 		master_view
-		# @store = Store.new
 	end
 
 	def master_view
@@ -25,7 +24,7 @@ class StoreController
 	def list(option)
 		case option
 		when "1" then logout
-		when "2" then products_index
+		when "2" then products_list
 		when "3" then create_product
 		when "4" then users_index
 		end
@@ -33,7 +32,6 @@ class StoreController
 
 	def login 
 		user_data = @view.display_login
-
 		if user_data[0] == $usuarios[0].mail && user_data[1] == $usuarios[0].password
 			option = @view.second_view
 			list(option)
@@ -45,10 +43,11 @@ class StoreController
 		end	
 	end
 
+
 	def register
 		user_attributes = @view.display_register
 		user = User.new(user_attributes[0], user_attributes[1], user_attributes[2])
-		user.add_user(user)
+		p user.add_user(user).inspect	
 		option = @view.second_view
 		list(option)
 	end
@@ -67,14 +66,31 @@ class StoreController
 
 	def create_product
 		product_attributes = @view.creando_producto
-		# product_data.inspect
 		@store.add_product(product_attributes[0], product_attributes[1])
+		option = @view.second_view
+		list(option)
+	end
+
+	def products_list
+		@view.products_list
 		products = @store.products
 		products.each do |product|
 			puts "Name: #{product.name} ---> Price: #{product.price}"
 		end
-		option = @view.second_view
-		list(option)
+		@view.products_list	
+	end
+
+	def users_index 
+		user_data = @view.
+		user_data.each do |user|
+			if user[0] == $usuarios.mail && user[1] == $usuarios.password
+				puts "Mail: #{usuario.mail} ---> Password: #{usuario.password}"
+				@view.userlist		
+			elsif user[0] != $usuarios.mail && user[1] == $usuarios.password
+				puts "User not register\n"
+				puts ""	
+			end
+		end		
 	end
 end
 

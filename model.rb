@@ -39,10 +39,6 @@ class Store
 		@products << Product.new(name, price)
 	end
 
-	def search_product_by(field, search)
-		@products.find_index {|product| product.field == search.field}
-	end
-
 	# def delete_product_with_id(id)
 	# 	@products.delete_at(id)
 	# end

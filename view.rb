@@ -37,8 +37,8 @@ class View
 	def second_view
 		puts "Welcome Your type is "
 		puts "----------------------------------------------------------------------"
-		puts "Select option number:\n 1.Logout.\n 2.Products index.\n 3.Create product.\n 4.Users index"
-		""
+		puts "Select option number:\n 1.Logout.\n 2.Products list.\n 3.Create product.\n 4.Users index"
+		puts ""
 		text = gets.chomp
 	end
 
@@ -64,7 +64,13 @@ class View
 		productos
 	end
 
-	def method_name
-		
+	def products_list
+		puts "This is the products list"
+		puts "-----------------------------------------------------------------------"
+	end
+
+	def users_list
+		puts "This is the users list"
+		puts "-----------------------------------------------------------------------"	
 	end
 end

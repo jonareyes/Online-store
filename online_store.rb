@@ -32,24 +32,39 @@ class StoreController
 
 	def login 
 		user_data = @view.display_login
-		if user_data[0] == $usuarios[0].mail && user_data[1] == $usuarios[0].password
-			option = @view.second_view
-			list(option)
-		elsif user_data[0] != $usuarios[0].mail && user_data[1] == $usuarios[0].password
-			puts "User not register\n"
-			puts ""	
-			option = @view.initial_view
-			list(option)
+		$usuarios.each do |user|
+			if user_data[0] == user.mail && user_data[1] == user.password
+				option = @view.second_view
+				list(option)
+			else 
+				puts "User not register\n"
+				puts ""	
+				option = @view.initial_view
+				list(option)
+			end
 		end	
 	end
 
 
 	def register
+		type = @view.type_client
 		user_attributes = @view.display_register
-		user = User.new(user_attributes[0], user_attributes[1], user_attributes[2])
-		p user.add_user(user).inspect	
-		option = @view.second_view
-		list(option)
+
+		if type == "admin"
+			user = Admin.new(user_attributes[0], user_attributes[1], user_attributes[2])
+		elsif type == "vendor"
+			user = Vendor.new(user_attributes[0], user_attributes[1], user_attributes[2])
+		elsif type == "client"
+			user = Client.new(user_attributes[0], user_attributes[1], user_attributes[2])
+		else
+			list =@view.initial_view
+		puts "Try again"
+		puts ""
+		 user.add_user(user)
+		 option = @view.second_view
+		 list(option)
+		end
+		# user = User.new(user_attributes[0], user_attributes[1], user_attributes[2])
 	end
 
 	def exit
@@ -81,16 +96,11 @@ class StoreController
 	end
 
 	def users_index 
-		user_data = @view.
-		user_data.each do |user|
-			if user[0] == $usuarios.mail && user[1] == $usuarios.password
-				puts "Mail: #{usuario.mail} ---> Password: #{usuario.password}"
-				@view.userlist		
-			elsif user[0] != $usuarios.mail && user[1] == $usuarios.password
-				puts "User not register\n"
-				puts ""	
-			end
-		end		
+		@view.users_list($usuarios)
+	end
+
+	def type
+		
 	end
 end
 

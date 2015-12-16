@@ -69,8 +69,18 @@ class View
 		puts "-----------------------------------------------------------------------"
 	end
 
-	def users_list
+	def users_list(usuarios)
 		puts "This is the users list"
-		puts "-----------------------------------------------------------------------"	
+		puts "-----------------------------------------------------------------------"
+		usuarios.each do |user|
+		puts "name --------> #{user.name}, mail --------> #{user.mail}."
+		puts "If you want "
+		end
+	end
+
+	def type_client
+		puts "Choose your type [admin, vendor, client]"
+		type = gets.chomp
+		
 	end
 end

@@ -1,31 +1,34 @@
 class User
 
-	attr_accessor :name, :mail, :password
+	attr_accessor :name, :mail, :password 
 	$usuarios = []
-
 	def initialize(name, mail, password)
 		@name = name
 		@mail = mail
 		@password = password
+		
 	end	
 
 	def add_user(user)
 		$usuarios << user
 	end
 
-end
-
-class Cliente < User
 
 
 end
 
-class Vendedor < User
+class Admin < User
 	
 end
 
-class Administrador < User
-	
+class Vendor < User
+		
+end
+
+class Client < User
+
+
+
 end
 
 class Store
